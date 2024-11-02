@@ -80,7 +80,10 @@ namespace MusicLab.Views
             {
                 string albumTitle = Prompt.ShowDialog("Введите название альбома:", "Добавить альбом");
                 int releaseYear = int.Parse(Prompt.ShowDialog("Введите год выпуска альбома:", "Добавить альбом"));
-                artist.Albums.Add(new Album(albumTitle, releaseYear, artist));
+                var album = new Album(albumTitle, releaseYear, artist);
+                artist.Albums.Add(album);
+                albums.Add(album); 
+        
                 MessageBox.Show($"Альбом {albumTitle} добавлен для артиста {artistName}.");
             }
             else
@@ -88,6 +91,7 @@ namespace MusicLab.Views
                 MessageBox.Show("Артист не найден.");
             }
         }
+
 
         private void btnAddTrack_Click(object sender, EventArgs e)
         {
