@@ -26,14 +26,30 @@ namespace MusicLab.Views
 
         private void LoadData()
         {
-            (artists, albums, compilations) = DataStorage.LoadData();
+            try
+            {
+                (artists, albums, compilations) = DataStorage.LoadData();
+                MessageBox.Show("Данные успешно загружены!", "Загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SaveData()
         {
-            DataStorage.SaveData(artists, albums, compilations);
-            MessageBox.Show("Данные сохранены успешно.");
+            try
+            {
+                DataStorage.SaveData(artists, albums, compilations);
+                MessageBox.Show("Данные успешно сохранены!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
